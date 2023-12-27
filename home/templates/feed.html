@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Blogs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<style>
+    :root {
+        --bg-color: #365ee1;
+        --text-color: #fff;
+        --active: #1245d1;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        justify-content: space-between;
+        padding: 30px;
+    }
+
+    .footer {
+        display: flex;
+        position: sticky;
+        align-items: center;
+        bottom: 0;
+        z-index: 2;
+    }
+
+    .active {
+        background-color: var(--active);
+        padding: 10px;
+        color: var(--text-color);
+        border-bottom: 3px solid var(--active);
+    }
+
+    .active i {
+        margin: 0 10px;
+    }
+
+
+    .post {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        color: white;
+        background-color: var(--bg-color);
+        cursor: pointer;
+        border-bottom: 3px solid var(--active);
+    }
+
+    .post i {
+        margin: 0 10px;
+    }
+
+    a {
+        color: var(--text-color);
+        text-decoration: none;
+    }
+
+    .card {
+        margin: 30px 0 20px;
+    }
+
+    .card img {
+        height: 15rem;
+        display: block;
+        width: 100%;
+        object-fit: cover;
+        /* object-position: top; */
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        margin: 10px 0;
+    }
+
+    .btn-container {
+        display: flex;
+        margin: 20px 0;
+        position: absolute;
+        right: 0;
+        align-items: center;
+    }
+
+    .edit {
+        position: absolute;
+        right: 20px;
+    }
+
+    .delete {
+        margin: 0 20px;
+        position: absolute;
+        right: 5rem;
+    }
+</style>
+
+<body>
+    <div class="nav">
+        <div class="logo">BlogSphere</div>
+
+    </div>
+    <div class="main">
+        {% for user in userData %}
+            <div class="card" style="width: 43rem;">
+                <div class="card-body">
+                    <div class="btn-container">
+                        <a href="/deletepost/{{user.id}}" class="btn edit btn-danger">Delete</a>
+                        <a href="/edit/{{user.id}}" class="btn delete btn-success">Edit</a>
+                    </div>
+                    <h5 class="card-title">{{user.username}}</h5>
+                    <p class="card-text">{{user.desc}}</p>
+                    {% if user.pic %}
+                        <img src="/media/{{user.pic}}" alt="{{ user.username }}">
+                    {% endif %}
+                    <a href="/comment_view/{{user.id}}" class="btn btn-primary">View Comments</a>
+    
+                    <!-- Display existing comments -->
+                 
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+
+
+
+        <div class="footer">
+            <a href="/feed/">
+                <div class="active "><i class="ri-article-line"></i>Feed</div>
+            </a>
+            <a href="/createpost/">
+                <div class="post"><i class="ri-add-box-line"></i>Create</div>
+            </a>
+            <a href="/loginpage/">
+                <div class="post"><i class="ri-arrow-left-line"></i>Log Out</div>
+            </a>
+        </div>
+    </body>
+
+</html>
