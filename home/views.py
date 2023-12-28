@@ -45,8 +45,8 @@ def loginpage(request):
         user = authenticate(username=username, password=password)
 
         if user is None:
-            # messages.error(request, 'Invalid Password')
-            return redirect('/feed/')
+            messages.error(request, 'Invalid Password')
+            return redirect('/loginpage/')
         else:
             login(request, user)
             return redirect('/feed/')
@@ -59,7 +59,7 @@ def loginpage(request):
 
 def homepage(request):
     return render(request, 'index.html')
-
+# @login_required(login_url='/loginpage')
 def createpost(request):
     if request.method == 'POST':
         data = request.POST

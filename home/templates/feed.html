@@ -77,7 +77,7 @@
     }
 
     .card img {
-        height: 15rem;
+        height: 24vw;
         display: block;
         width: 100%;
         object-fit: cover;
@@ -124,13 +124,14 @@
         }
 
         .card {
-            width: 80%;
+            width: 20rem;
             margin: 20px 0;
         }
 
         .btn-container {
+            display: flex;
             flex-direction: column;
-            position: static;
+            position: absolute;
             margin: 10px 0;
             text-align: center;
         }
@@ -138,9 +139,26 @@
         .edit,
         .delete {
             position: static;
-            margin: 10px 0;
+            margin: 10px 10px;
+        }
+        .edit{
+            position: relative;
+            top: 1vw;
+            right: 0;
+        }
+        .delete{
+            position: relative;
+            /* bottom: 16vw; */
+            left: 5px;
+            top: 8.9rem;
         }
     }
+    @media only screen and (max-width: 475px){
+        .delete{
+            top: 7rem;
+        }
+    }
+   
 </style>
 
 <body>
@@ -150,7 +168,7 @@
     </div>
     <div class="main">
         {% for user in userData %}
-            <div class="card" style="width: 43rem;">
+            <div class="card" style="width: 80vw;">
                 <div class="card-body">
                     <div class="btn-container">
                         <a href="/deletepost/{{user.id}}" class="btn edit btn-danger">Delete</a>
